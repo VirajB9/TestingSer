@@ -1,4 +1,4 @@
-from sqlalachemy import Column,ForeignKey,Integer,String
+from sqlalchemy import Column,ForeignKey,Integer,String
 from sqlalchemy.orm import relationship
 from sql.database import Base
 
@@ -6,7 +6,7 @@ class Department(Base):
 
 	__tablename__ = "Department" 
 	
-	id = Column(Integer,primary_key = True, index = True)\
+	id = Column(Integer,primary_key = True, index = True)
 	name = Column(String,nullable = False)
 	
 	employee = relationship("Employee", back_populates = "department")

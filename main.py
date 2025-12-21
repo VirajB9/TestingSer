@@ -5,9 +5,8 @@ from sql.database import Base,engine
 
 
 app = FastAPI(
-
-	title : "Employee-Department Management",
-	version : "1:0:0"
+	title="Employee-Department Management",
+    version="1:0:0"
 )
 
 Base.metadata.create_all(bind =engine)

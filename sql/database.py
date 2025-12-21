@@ -7,17 +7,17 @@ import os
 
 load_dotenv()
 
-Database_URL = os.getenv("Database_URL")
+Database_URL = os.getenv("DATABASE_URL")
 engine = create_engine(Database_URL)
 
-SessionLocal = sessionmaker(bind=engine,autcommit = False, autoflush = False)
+SessionLocal = sessionmaker(bind=engine,autocommit = False, autoflush = False)
 
 Base = declarative_base()
 
 def get_db():
 
-db = SessionLocal
-try:
-	yield db
-finally:
-	db.close()
+	db = SessionLocal()
+	try:
+		yield db
+	finally:
+		db.close()

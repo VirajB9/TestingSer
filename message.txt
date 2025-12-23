@@ -1,0 +1,51 @@
+📄 3. category_product.requirement
+🛍 Category & Product Management API
+🎯 Objective
+
+Build APIs where products belong to categories, and changes in category attributes automatically reflect in products.
+
+📦 Entities
+
+Category
+
+id (int)
+name (str, unique)
+tax_rate (float) → percentage, e.g., 5.0, 12.0
+
+Product
+
+id (int)
+name (str)
+price (float)
+category_id (FK)
+category_name (str) ← copied from Category
+tax_rate (float) ← copied from Category
+
+👉 One Category → many Products.
+
+🛠 API Requirements
+Category APIs
+
+POST /categories/ → create category
+PUT /categories/{id} → update name or tax_rate
+GET /categories/ → list categories
+DELETE /categories/{id} → delete category
+
+Product APIs
+POST /products/ → create product under category
+GET /products/ → list products
+PUT /products/{id} → update product price/name
+DELETE /products/{id} → delete product
+
+🧠 Business Logic
+
+On product creation:
+Copy category.name → product.category_name.
+Copy category.tax_rate → product.tax_rate.
+When category name or tax_rate is updated:
+Update both fields in all products of that category.
+
+If a category is deleted:
+All products must be deleted (cascade).
+Price must be > 0.
+Cannot create product if category does not exist.
